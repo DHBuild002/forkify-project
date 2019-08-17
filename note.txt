@@ -1,0 +1,17 @@
+// webpack.config.js
+entry: ['@babel/polyfill', './src/js/index.js'],
+
+
+// .babelrc
+{
+    "presets": [
+        ["@babel/env", {
+            "targets": {
+                "browsers": [
+                    "last 5 versions",
+                    "ie >= 8"
+                ]
+            }
+        }]
+    ]
+}
