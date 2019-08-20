@@ -1,1 +1,0 @@
-{"version":3,"sources":["dist/css/base.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA","file":"base.a659180a.css","sourceRoot":"..","sourcesContent":["body {\n  font-family: \"Robot\", sans-serif;\n  background-color: lightgreen;\n  color: grey;\n}\n"]}
