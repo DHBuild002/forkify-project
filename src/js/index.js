@@ -1,5 +1,7 @@
 // Global app controller - Importing content
 import num from './test';
-const css = require('../css/style.css');
+import css from '../css/style.css';
+const x = 23;
 
-console.log(`I Imported ${num} from another module.`)
+
+console.log(`Imported ${num} from another module. Variable X is ${x}.`);
