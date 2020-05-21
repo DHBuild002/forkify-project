@@ -19,5 +19,6 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "npm-check": "^5.9.2"
+
   }
 }
