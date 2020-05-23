@@ -1,7 +1,3 @@
-// Global app controller - Importing content
-import num from './test';
-import css from '../css/style.css';
-const x = 23;
+import num from './test.js';
 
-
-console.log(`Imported ${num} from another module. Variable X is ${x}.`);
+console.log(`I imported ${num} from another module. and this too.`)
