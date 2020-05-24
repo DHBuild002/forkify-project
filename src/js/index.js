@@ -1,3 +1,8 @@
-import num from './test.js';
+import axios from 'axios';
 
-console.log(`I imported ${num} from another module. and this too.`)
+// https://forkify-api.herokuapp.com/api/search
+async function getResults(query) {
+	const res = await axios(`https://forkify-api.herokuapp.com/api/search?q=${query}`)
+		console.log(res)
+}
+getResults('Pizza');
