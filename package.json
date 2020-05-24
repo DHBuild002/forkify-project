@@ -17,8 +17,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "jquery": "^3.5.1",
     "npm-check": "^5.9.2"
-
   }
 }
