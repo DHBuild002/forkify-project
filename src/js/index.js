@@ -1,14 +1,39 @@
 import Search from './modules/Search';
+import * as searchView from './view/searchView';
+import { elements } from './view/base';
 
 /**Global State of the app
 * - Search Object
 * - Current Receipe Object
 * Shopping List object
 * - Liked Recipes
+
 **/
 const state = {};
 
-const search = new Search('pizza')
-console.log(search);
+const controlSearch = async() => {
+	// 1) Get Query from View
+	const query = searchView.getInput();
+	console.log(query);
 
-search.getResults();
+	if (query) {
+		// 2) New Search Object + Add to State
+		state.search = new Search(query);
+
+		// 3)  Clear Previous Search, Show Loading Symbol (Prepare UI for results)
+
+		// 4) Search for Receipes
+		await state.search.getResults();
+
+		// 5) Render results on UI
+		console.log(state.search.result);
+	}
+}
+
+
+elements.searchForm.addEventListener('submit', e => {
+	e.preventDefault();
+	controlSearch();
+});
+
+// search.getResults();
