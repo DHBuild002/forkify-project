@@ -37,7 +37,26 @@ const renderRecipe = recipe => {
 	</li>`;
 	elements.searchList.insertAdjacentHTML('beforeend', markup);
 };
-export const renderResults = recipes => {
-	console.log(recipes);
-	recipes.forEach(renderRecipe);
+
+const createButton = (page, type)
+const renderButtons = (page, numResults, resultsPerPage) => {
+	const pages = numResults / resPerPage;
+
+	if (page === 1 && pages > 1) {
+		// button to go to next page
+
+
+	}else if (page < pages){
+		// we want both next and previous buttons
+
+	} else if (page === pages && pages > 1) {
+		// show only last button but one
+	}
+};
+export const renderResults = (recipes, page = 1 , resPerPage = 3) => {
+	const start = (page - 1) * resPerPage;
+	const end = page * resPerPage;
+
+	recipes.slice(start, end).forEach(renderRecipe);
+
 };
