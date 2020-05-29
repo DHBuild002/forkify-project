@@ -1,5 +1,6 @@
 import Search from './modules/Search';
 import * as searchView from './view/searchView';
+import recipe from './modules'
 import { elements, renderLoader, clearLoader } from './view/base'
 
 /**Global State of the app
