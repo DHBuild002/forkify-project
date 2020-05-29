@@ -7,6 +7,7 @@ export  const clearInput = () => {
 }
 export const clearResults = () => {
 	elements.searchList.innerHTML = ' ';
+	elements.searchResPages.innerHTML = ' ';
 }
 
 const abbrTitle = (title, limit = 17) => {
@@ -40,14 +41,13 @@ const renderRecipe = recipe => {
 
 // type: Prev / Next
 const createButton = (page, type) =>
-`<!--
+`
 <button class="btn-inline results__btn--${type}" data-goto= ${type === 'prev' ? page - 1 : page + 1}>
-		<svg class="search__icon">
-				<use href="img/icons.svg#icon-triangle- ${type === 'prev' ? 'left' : 'right'}"></use>
-		</svg>
 		<span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+		<svg class="search__icon">
+				<use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+		</svg>
 </button>
--->
 `;
 const renderButtons = (page, numResults, resPerPage) => {
 	const pages = Math.ceil(numResults / resPerPage);
