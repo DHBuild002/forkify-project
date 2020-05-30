@@ -1,6 +1,6 @@
 import Search from './modules/Search';
 import * as searchView from './view/searchView';
-import recipe from './modules'
+import Recipe from './modules/Recipe';
 import { elements, renderLoader, clearLoader } from './view/base'
 
 /**Global State of the app
@@ -47,5 +47,12 @@ elements.searchResPages.addEventListener('click', e => {
 		searchView.renderResults(state.search.result, goToPage);
 		console.log(goToPage);
 	}
-})
-// search.getResults();
+});
+
+/*
+Search Recipe
+
+*/
+const r = new Recipe(47746);
+r.getRecipe();
+console.log(r);
