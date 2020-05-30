@@ -1,5 +1,6 @@
 import Search from './modules/Search';
 import * as searchView from './view/searchView';
+import * as recipeView from './view/recipeView';
 import Recipe from './modules/Recipe';
 import { elements, renderLoader, clearLoader } from './view/base'
 
@@ -70,28 +71,33 @@ Search Recipe
 const controlRecipe = async() => {
 	// get id from URL
 	const id = window.location.hash.replace('#', ' ');
-	console.log(id);
 
 	if (id) {
 		// prepare UI for changes
-
+		renderLoader(elements.recipe);
 		// create new recipe object
 		state.recipe = new Recipe(id);
 
 		//Testing
 		// window.r = state.recipe;
-
+		clearLoader();
+		recipeView.renderRecipe(state.recipe);
 
 try {
-		//get recipe data an dparse the returned result to apply abbrevs and other data manipulations
-
+		//get recipe data
 		await state.recipe.getRecipe();
+
+		// parseIngredients: Tweak the ingredients in the Recipe to make them appear more uniform -
+		// See  Recipe.js for more details
 		state.recipe.parseIngredients();
+
 		// calc servings + time to cook
 		state.recipe.calcTime();
 		state.recipe.calcServings();
+
 		// Render Recipe
-		console.log(state.recipe);
+
+
 	}	catch (err) {
 			alert('Something went wrong - Second Catch');
 		}
