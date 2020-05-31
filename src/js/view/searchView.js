@@ -9,6 +9,10 @@ export const clearResults = () => {
 	elements.searchList.innerHTML = ' ';
 	elements.searchResPages.innerHTML = ' ';
 }
+export const highlightSelected = id => {
+	document.querySelector(`a[href="${id}"]`).classList.add('results__link--active');
+
+};
 
 const abbrTitle = (title, limit = 17) => {
 	const newTitle = [];

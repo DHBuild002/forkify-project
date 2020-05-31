@@ -3,7 +3,8 @@ import axios from 'axios';
 export default class Recipe{
 	constructor(id){
 		this.id = id;
-	}
+	};
+
 	async getRecipe() {
 	try {
 		const res = await axios(`https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
@@ -29,6 +30,7 @@ export default class Recipe{
 	parseIngredients() {
 			const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
 			const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lbs', 'lb'];
+			const units = [...unitsShort, 'kg', 'g']
 			const newIngredients = this.ingred.map(el => {
 			//Uniform units
 				let ingredient = el.toLowerCase();
@@ -37,14 +39,12 @@ export default class Recipe{
 				});
 			// Remove Parentheses
 			ingredient = ingredient.replace(/[' ']/g, ' ');
-			console.log(ingredient);
 
 			// Parse Ingredients into count, unit and ingredient
 			const arrIng =  ingredient.split(' ');
-			const unitIndex = arrIng.indexOf(el2 => unitsShort.includes(el2));
+			const unitIndex = arrIng.indexOf(el2 => units.includes(el2));
 
 			let objIng;
-
 			if (unitIndex > -1){
 				// there is a unit
 				const arrCount = arrIng.slice(0, unitIndex);
@@ -77,6 +77,6 @@ export default class Recipe{
 			}
 			return objIng;
 		});
-		this.ingredients = newIngredients;
+		this.ingred = newIngredients;
 	}
 };

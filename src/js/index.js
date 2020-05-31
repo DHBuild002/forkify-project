@@ -1,7 +1,9 @@
 import Search from './modules/Search';
+import Recipe from './modules/Recipe';
+
 import * as searchView from './view/searchView';
 import * as recipeView from './view/recipeView';
-import Recipe from './modules/Recipe';
+
 import { elements, renderLoader, clearLoader } from './view/base'
 
 /**Global State of the app
@@ -41,7 +43,6 @@ const controlSearch = async() => {
 	}
 }
 
-
 elements.searchForm.addEventListener('submit', e => {
 	e.preventDefault();
 	controlSearch();
@@ -74,14 +75,14 @@ const controlRecipe = async() => {
 
 	if (id) {
 		// prepare UI for changes
+		recipeView.clearRecipe();
 		renderLoader(elements.recipe);
+		if (state.search) { searchView.highlightSelected(id); }
 		// create new recipe object
 		state.recipe = new Recipe(id);
 
 		//Testing
 		// window.r = state.recipe;
-		clearLoader();
-		recipeView.renderRecipe(state.recipe);
 
 try {
 		//get recipe data
@@ -96,7 +97,8 @@ try {
 		state.recipe.calcServings();
 
 		// Render Recipe
-
+		clearLoader();
+		recipeView.renderRecipe(state.recipe);
 
 	}	catch (err) {
 			alert('Something went wrong - Second Catch');
