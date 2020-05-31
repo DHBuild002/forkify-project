@@ -71,13 +71,17 @@ Search Recipe
 */
 const controlRecipe = async() => {
 	// get id from URL
-	const id = window.location.hash.replace('#', ' ');
+	const id = window.location.hash.replace('#', '');
 
 	if (id) {
 		// prepare UI for changes
 		recipeView.clearRecipe();
 		renderLoader(elements.recipe);
-		if (state.search) { searchView.highlightSelected(id); }
+
+		if (state.search)
+		console.log(id);
+		searchView.highlightSelected(id);
+
 		// create new recipe object
 		state.recipe = new Recipe(id);
 
