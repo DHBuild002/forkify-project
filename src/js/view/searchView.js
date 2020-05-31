@@ -10,6 +10,10 @@ export const clearResults = () => {
 	elements.searchResPages.innerHTML = ' ';
 }
 export const highlightSelected = id => {
+	const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+	resultsArr.forEach(el => {
+		el.classList.remove('results__link--active')
+	})
 	document.querySelector(`a[href*="#${id}"]`).classList.add('results__link--active');
 };
 
@@ -34,8 +38,8 @@ const renderRecipe = recipe => {
 							<img src="${recipe.image_url}" alt="${recipe.title}">
 					</figure>
 					<div class="results__data">
-							<h4 class="results__name">${abbrTitle(recipe.title)}.</h4>
-							<p class="results__author">${recipe.author}</p>
+							<h4 class="results__name">${abbrTitle(recipe.title)} .</h4>
+							<p class="results__author">${recipe.publisher}</p>
 					</div>
 			</a>
 	</li>`;
