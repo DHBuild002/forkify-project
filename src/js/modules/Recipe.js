@@ -86,7 +86,6 @@ export default class Recipe{
 			//Ingredients
 			this.ingred.forEach(ing => {
 				ing.count *= (newServings / this.servings);
-				console.log(ing);
 			});
 			this.servings = newServings;
 	}

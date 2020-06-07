@@ -28,7 +28,7 @@ const populateIngredient = ingredient => `
 		<svg class="recipe__icon">
 				<use href="img/icons.svg#icon-check"></use>
 		</svg>
-		<div class="recipe__count">${ingredient.count}</div>
+		<div class="recipe__count">${formatCount(ingredient.count)}</div>
 		<div class="recipe__ingredient">
 				<span class="recipe__unit">${ingredient.unit}</span>
 				${ingredient.ingredient}
@@ -111,4 +111,13 @@ export const renderRecipe = recipe => {
 	</div>
 	`
 	elements.recipe.insertAdjacentHTML('afterbegin', markup);
-}
+};
+export const updateServingsIngred = recipe => {
+	// Update servings
+	document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+
+	const countElements = Array.from(document.querySelectorAll('.recipe__count'));
+	countElements.forEach((el, i) => {
+		el.textContent = formatCount(recipe.ingred[i].count);
+	})
+};
