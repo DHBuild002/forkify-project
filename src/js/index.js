@@ -4,6 +4,7 @@ import List from './modules/List';
 
 import * as searchView from './view/searchView';
 import * as recipeView from './view/recipeView';
+import * as listView from './view/listView';
 
 import { elements, renderLoader, clearLoader } from './view/base';
 
@@ -14,6 +15,8 @@ import { elements, renderLoader, clearLoader } from './view/base';
 * - Liked Recipes
 
 **/
+
+// Search Controller
 const state = {};
 
 const controlSearch = async() => {
@@ -67,7 +70,7 @@ elements.searchResPages.addEventListener('click', e => {
 });
 
 /*
-Search Recipe
+Recipe Section Controller
 
 */
 const controlRecipe = async() => {
@@ -118,6 +121,16 @@ window.addEventListener('load', controlRecipe)
 // The above is the same as the below:
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
+const controlList = () => {
+	if(!state.list) state.list = new List();
+
+	state.recipe.ingred.forEach(el => {
+		const item = state.list.addItem(el.count, el.unit, el.ingred);
+		listView.renderItem(item);
+	});
+}
+
+
 // Handle Recipe button clicks
 elements.recipe.addEventListener('click', e => {
 	if (e.target.matches('.btn-decrease, .btn-decrease *')) {
@@ -129,6 +142,9 @@ elements.recipe.addEventListener('click', e => {
 	} else if (e.target.matches('.btn-increase, .btn-increase *')) {
 			state.recipe.updateServings('inc');
 			recipeView.updateServingsIngred(state.recipe);
+			}
+			else if (e.target.matches('.recipe__btn--add, .recipe__btn *')) {
+				controlList();
 			}
 	});
 window.L = new List();

@@ -2,7 +2,7 @@ import { elements } from './base';
 import { Fraction } from 'fractional';
 
 export const clearRecipe = () => {
-	
+
 	elements.recipe.innerHTML = ' ';
 };
 
@@ -88,7 +88,7 @@ export const renderRecipe = recipe => {
 			${recipe.ingred.map(el => populateIngredient(el)).join(' ')}
 			</ul>
 
-			<button class="btn-small recipe__btn">
+			<button class="btn-small recipe__btn recipe__btn--add">
 					<svg class="search__icon">
 							<use href="img/icons.svg#icon-shopping-cart"></use>
 					</svg>
