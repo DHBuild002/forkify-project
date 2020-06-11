@@ -125,7 +125,7 @@ const controlList = () => {
 	if(!state.list) state.list = new List();
 
 	state.recipe.ingred.forEach(el => {
-		const item = state.list.addItem(el.count, el.unit, el.ingred);
+		const item = state.list.addItem(el.count, el.unit, el.ingredient);
 		listView.renderItem(item);
 	});
 }
@@ -147,4 +147,4 @@ elements.recipe.addEventListener('click', e => {
 				controlList();
 			}
 	});
-window.L = new List();
+//window.L = new List();
