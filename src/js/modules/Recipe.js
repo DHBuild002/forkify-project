@@ -38,7 +38,8 @@ export default class Recipe{
 					ingredient = ingredient.replace(unit, unitsShort[i]);
 				});
 			// Remove Parentheses
-			ingredient = ingredient.replace(/[' ']/g, ' ');
+			ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
+			// My method from StackExchange: /[' ']/g
 
 			// Parse Ingredients into count, unit and ingredient
 			const arrIng =  ingredient.split(' ');
@@ -60,7 +61,7 @@ export default class Recipe{
 					count,
 					unit: arrIng[unitIndex],
 					ingredient: arrIng.slice(unitIndex + 1).join(' ')
-				}
+				};
 			} else if (parseInt(arrIng[0], 10)) {
 				objIng = {
 					count: parseInt(arrIng[0], 10),
@@ -74,6 +75,7 @@ export default class Recipe{
 					unit: '',
 					ingredient
 				}
+				console.log(objIng)
 			}
 			return objIng;
 		});
