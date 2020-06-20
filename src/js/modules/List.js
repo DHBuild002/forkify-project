@@ -4,6 +4,7 @@ export default class List {
 	constructor() {
 		this.items = [];
 	}
+
 	addItem (count, unit, ingred){
 		const item = {
 			id: uniqid(),
@@ -20,5 +21,5 @@ export default class List {
 	}
 	updateCount(id, newCount){
 		this.items.find(el => el.id === id).count = newCount;
-	};
+	}
 }

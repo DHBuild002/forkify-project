@@ -3,7 +3,7 @@ import { Fraction } from 'fractional';
 
 export const clearRecipe = () => {
 
-	elements.recipe.innerHTML = ' ';
+	elements.recipe.innerHTML = '';
 };
 
 const formatCount = count => {

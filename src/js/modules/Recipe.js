@@ -3,7 +3,7 @@ import axios from 'axios';
 export default class Recipe{
 	constructor(id){
 		this.id = id;
-	};
+	}
 
 	async getRecipe() {
 	try {
@@ -31,7 +31,8 @@ export default class Recipe{
 			const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
 			const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lbs', 'lb'];
 			const units = [...unitsShort, 'kg', 'g']
-			const newIngredients = this.ingred.map(el=> {
+
+			const newIngredients = this.ingred.map(el => {
 			//Uniform units
 				let ingredient = el.toLowerCase();
 				unitsLong.forEach((unit, i) => {
@@ -43,7 +44,7 @@ export default class Recipe{
 
 			// Parse Ingredients into count, unit and ingredient
 			const arrIng =  ingredient.split(' ');
-			const unitIndex = arrIng.indexOf(el2 => units.includes(el2));
+			const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
 
 			let objIng;
 			if (unitIndex > -1){
@@ -62,7 +63,9 @@ export default class Recipe{
 					unit: arrIng[unitIndex],
 					ingredient: arrIng.slice(unitIndex + 1).join(' ')
 				};
-			} else if (parseInt(arrIng[0], 10)) {
+			}
+			// This is the evaluation that is being outputted for all ingredients in the Units section of listView:
+			else if (parseInt(arrIng[0], 10)) {
 				objIng = {
 					count: parseInt(arrIng[0], 10),
 					unit: '',
@@ -74,8 +77,7 @@ export default class Recipe{
 					count: 1,
 					unit: '',
 					ingredient
-				}
-				console.log(objIng)
+				};
 			}
 			return objIng;
 		});
