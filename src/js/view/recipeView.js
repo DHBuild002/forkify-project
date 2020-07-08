@@ -85,7 +85,7 @@ export const renderRecipe = recipe => {
 
 	<div class="recipe__ingredients">
 			<ul class="recipe__ingredient-list">
-			${recipe.ingred.map(el => populateIngredient(el)).join(' ')}
+			${recipe.ingred.map(el => populateIngredient(el)).join('')}
 			</ul>
 
 			<button class="btn-small recipe__btn recipe__btn--add">

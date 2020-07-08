@@ -18,6 +18,7 @@ import { elements, renderLoader, clearLoader } from './view/base';
 
 // Search Controller
 const state = {};
+window.state = state;
 
 const controlSearch = async() => {
 	// 1) Get Query from View
@@ -33,17 +34,15 @@ const controlSearch = async() => {
 		searchView.clearResults();
 		renderLoader(elements.searchRes);
 		try{
-		// 4) Search for Receipes
+		// 4) Search for Recipes
 		await state.search.getResults();
 
 		// 5) Render results on UI
 		clearLoader();
 		searchView.renderResults(state.search.result);
-	} catch {
-		alert('Something went wrong in processing this search - ' + error);
-	}
-
-
+	} catch (err){
+		alert('Something went wrong in processing this search - ' + err);
+		}
 	}
 }
 
@@ -107,7 +106,8 @@ try {
 		recipeView.renderRecipe(state.recipe);
 
 	}	catch (err) {
-			alert('Something went wrong - Second Catch');
+		console.log(err);
+			alert('Something went wrong - Second Catch '+ err);
 		}
 	}
 }
@@ -127,7 +127,18 @@ const controlList = () => {
 		listView.renderItem(item);
 	});
 }
+// Handle Delete and Update list item events
+elements.shopping.addEventListener('click', e => {
+	const id = e.target.closest('.shopping__item').dataset.itemid;
 
+	// Handle delete event
+	if(e.target.matches('.shopping__delete, .shopping__delete *')){
+			state.list.deleteItem(id);
+
+			// Delete from UI
+			listView.deleteItem(id);
+	}
+});
 
 // Handle Recipe button clicks
 elements.recipe.addEventListener('click', e => {

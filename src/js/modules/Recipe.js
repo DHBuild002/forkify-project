@@ -44,7 +44,7 @@ export default class Recipe{
 
 			// Parse Ingredients into count, unit and ingredient
 			const arrIng =  ingredient.split(' ');
-			const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
+			const unitIndex = arrIng.indexOf(el2 => units.includes(el2));
 
 			let objIng;
 			if (unitIndex > -1){
@@ -77,7 +77,7 @@ export default class Recipe{
 					count: 1,
 					unit: '',
 					ingredient
-				};
+				}
 			}
 			return objIng;
 		});
