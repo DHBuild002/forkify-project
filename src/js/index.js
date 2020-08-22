@@ -93,8 +93,7 @@ try {
 		//get recipe data
 		await state.recipe.getRecipe();
 
-		// parseIngredients: Tweak the ingredients in the Recipe to make them appear more uniform -
-		// See  Recipe.js for more details
+		// parseIngredients: Tweak the ingredients in the Recipe to make them appear more uniform - See  Recipe.js for more details
 		state.recipe.parseIngredients();
 
 		// calc servings + time to cook
@@ -107,7 +106,7 @@ try {
 
 	}	catch (err) {
 		console.log(err);
-			alert('Something went wrong - Second Catch '+ err);
+		alert('Something went wrong - Second Catch '+ err);
 		}
 	}
 }

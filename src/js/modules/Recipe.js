@@ -15,7 +15,7 @@ export default class Recipe{
 			this.source = res.data.recipe.source_url;
 			this.ingred = res.data.recipe.ingredients
 		} catch (error){
-			alert(' Something went wrong in finding your Recipe -  ' + error);
+			alert('Something went wrong in finding your Recipe -  ' + error);
 		}
 	}
 	calcTime() {
@@ -28,9 +28,9 @@ export default class Recipe{
 		this.servings = 4;
 	}
 	parseIngredients() {
-			const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
-			const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lbs', 'lb'];
-			const units = [...unitsShort, 'kg', 'g']
+			const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds'];
+			const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+			const units = [...unitsShort, 'kg', 'g'];
 
 			const newIngredients = this.ingred.map(el => {
 			//Uniform units
@@ -61,7 +61,7 @@ export default class Recipe{
 				objIng = {
 					count,
 					unit: arrIng[unitIndex],
-					ingredient: arrIng.slice(unitIndex + 1).join(' ')
+				ingredient: arrIng.slice(unitIndex + 1).join(' ')
 				};
 			}
 			// This is the evaluation that is being outputted for all ingredients in the Units section of listView:

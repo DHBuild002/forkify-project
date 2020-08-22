@@ -2,8 +2,7 @@ import { elements } from './base';
 import { Fraction } from 'fractional';
 
 export const clearRecipe = () => {
-
-	elements.recipe.innerHTML = '';
+			elements.recipe.innerHTML = '';
 };
 
 const formatCount = count => {
@@ -22,9 +21,9 @@ const formatCount = count => {
 		}
 	}
 	return '?';
-}
+};
 
-const populateIngredient = ingredient => `
+const createIngredient = ingredient => `
 <li class="recipe__item">
 		<svg class="recipe__icon">
 				<use href="img/icons.svg#icon-check"></use>
@@ -85,7 +84,7 @@ export const renderRecipe = recipe => {
 
 	<div class="recipe__ingredients">
 			<ul class="recipe__ingredient-list">
-			${recipe.ingred.map(el => populateIngredient(el)).join('')}
+			${recipe.ingred.map(el => createIngredient(el)).join('')}
 			</ul>
 
 			<button class="btn-small recipe__btn recipe__btn--add">
