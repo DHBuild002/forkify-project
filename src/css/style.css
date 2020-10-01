@@ -437,7 +437,7 @@ body {
     font-weight: 700; }
 
 .shopping {
-  padding: 3rem 4rem;
+  padding: 1rem 2.9rem;
   display: flex;
   flex-direction: column; }
   .shopping__list {
