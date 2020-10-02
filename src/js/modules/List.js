@@ -11,7 +11,7 @@ export default class List {
 			count,
 			unit,
 			ingred
-		}
+		};
 		this.items.push(item);
 		return item;
 	}

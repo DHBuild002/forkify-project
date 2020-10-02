@@ -1,10 +1,12 @@
 import Search from './modules/Search';
 import Recipe from './modules/Recipe';
 import List from './modules/List';
+import Like from './modules/Like';
 
 import * as searchView from './view/searchView';
 import * as recipeView from './view/recipeView';
 import * as listView from './view/listView';
+// import * as likesView from './view/likesView';
 
 import { elements, renderLoader, clearLoader } from './view/base';
 
@@ -69,8 +71,7 @@ elements.searchResPages.addEventListener('click', e => {
 });
 
 /*
-Recipe Section Controller
-
+List Section Controller
 */
 const controlRecipe = async() => {
 	// get id from URL
@@ -112,15 +113,49 @@ try {
 }
 
 /*
+Like Section Controller
+*/
+const controlLike = () => {
+	if(!state.likes) state.likes = new Like();
+	const currentID = state.recipe.id;
+
+	// User has not yet liked current recipe
+	if (!state.likes.isLiked(currentID)) {
+		// Add like to the state
+		const newLike = state.likes.addLike(
+			currentID,
+			state.recipe.title,
+			state.recipe.author,
+			state.recipe.img
+		);
+		//Toggle the like button
+
+		// Add like to the UI Like list
+		console.log(state.likes);
+	// User has liked current recipe	
+	} else {
+		// Remove like from the state
+		state.likes.deleteLike(currentID);
+
+		//Toggle the like button
+
+		// Remove like from the UI Like list
+		console.log(state.likes)
+	}
+}
+
+
+
+/*
 window.addEventListener('hashchange', controlRecipe)
 window.addEventListener('load', controlRecipe)
 */
-// The above is the same as the below:
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
 const controlList = () => {
 	if(!state.list) state.list = new List();
 
+	//add Each item to list and UI
 	state.recipe.ingred.forEach(el => {
 		const item = state.list.addItem(el.count, el.unit, el.ingredient);
 		listView.renderItem(item);
@@ -132,11 +167,15 @@ elements.shopping.addEventListener('click', e => {
 
 	// Handle delete event
 	if(e.target.matches('.shopping__delete, .shopping__delete *')){
+			// Delete from State
 			state.list.deleteItem(id);
 
 			// Delete from UI
 			listView.deleteItem(id);
-	}
+	} else if(e.target.matches('.shopping__count-value')) {
+		const val = parseFloat(e.target.value, 10);
+		state.list.updateCount(id, val);
+		}
 });
 
 // Handle Recipe button clicks
@@ -152,7 +191,11 @@ elements.recipe.addEventListener('click', e => {
 			recipeView.updateServingsIngred(state.recipe);
 			}
 			else if (e.target.matches('.recipe__btn--add, .recipe__btn *')) {
+				// Add ingredients to shopping list function
 				controlList();
+			} else if (e.target.matches('.recipe__love, .recipe__love *')) {
+				// like controller
+				controlLike();
 			}
 	});
 //window.L = new List();
