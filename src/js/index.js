@@ -6,7 +6,7 @@ import Like from './modules/Like';
 import * as searchView from './view/searchView';
 import * as recipeView from './view/recipeView';
 import * as listView from './view/listView';
-// import * as likesView from './view/likesView';
+import * as likesView from './view/likesView';
 
 import { elements, renderLoader, clearLoader } from './view/base';
 
@@ -103,7 +103,10 @@ try {
 
 		// Render Recipe
 		clearLoader();
-		recipeView.renderRecipe(state.recipe);
+		recipeView.renderRecipe(
+			state.recipe, 
+			state.likes.isLiked(id)
+			)
 
 	}	catch (err) {
 		console.log(err);
@@ -115,6 +118,9 @@ try {
 /*
 Like Section Controller
 */
+
+state.likes = new Like();
+
 const controlLike = () => {
 	if(!state.likes) state.likes = new Like();
 	const currentID = state.recipe.id;
@@ -128,7 +134,8 @@ const controlLike = () => {
 			state.recipe.author,
 			state.recipe.img
 		);
-		//Toggle the like button
+		//Toggle the like button	
+		likesView.toggleLikeBtn(true);
 
 		// Add like to the UI Like list
 		console.log(state.likes);
@@ -138,6 +145,7 @@ const controlLike = () => {
 		state.likes.deleteLike(currentID);
 
 		//Toggle the like button
+		likesView.toggleLikeBtn(false);
 
 		// Remove like from the UI Like list
 		console.log(state.likes)
