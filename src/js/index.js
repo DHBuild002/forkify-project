@@ -10,18 +10,16 @@ import * as likesView from './view/likesView';
 
 import { elements, renderLoader, clearLoader } from './view/base';
 
-/**Global State of the app
+/**
+ 
+* Global State of the app
 * - Search Object
 * - Current Receipe Object
-* Shopping List object
+* - Shopping List object
 * - Liked Recipes
 
 **/
-
-// Search Controller
 const state = {};
-window.state = state;
-
 const controlSearch = async() => {
 	// 1) Get Query from View
 	// const query = 'pizza';
@@ -66,7 +64,6 @@ elements.searchResPages.addEventListener('click', e => {
 		const goToPage = parseInt(btn.dataset.goto, 10);
 		searchView.clearResults();
 		searchView.renderResults(state.search.result, goToPage);
-		console.log(goToPage);
 	}
 });
 
@@ -116,10 +113,12 @@ try {
 		}
 	}
 }
+
 /*
 window.addEventListener('hashchange', controlRecipe)
 window.addEventListener('load', controlRecipe)
 */
+
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
 const controlList = () => {
@@ -172,7 +171,6 @@ const controlLike = () => {
 
 		// Add like to the UI Like list
 		likesView.renderLike(newLike);
-		console.log(state.likes);
 	// User has liked current recipe	
 	} else {
 		// Remove like from the state
@@ -183,7 +181,6 @@ const controlLike = () => {
 
 		// Remove like from the UI Like list
 		likesView.deleteLike(currentID);
-		console.log(state.likes);
 	}
 	likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
@@ -219,4 +216,3 @@ elements.recipe.addEventListener('click', e => {
 				controlLike();
 			}
 	});
-//window.L = new List();
